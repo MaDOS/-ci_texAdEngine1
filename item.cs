@@ -7,23 +7,24 @@ namespace ci_texAdEngine1
 {
 	public class item
 	{
-		int id;
-		string name;
-		bool takeable;
-		bool useable;
-		bool weapon;
-		bool key;
-		bool eatable;
-		int damage;
-		int heal;
-		double weight;
+		public string filename;
+		public string name;
+		public bool takeable;
+		public bool useable;
+		public bool weapon;
+		public bool key;
+		public bool eatable;
+		public int damage;
+		public int heal;
+		public double weight;
+		private IniFile dataIni;
 		
 		
 		public item(string filename)
 		{
-			IniFile dataIni = new IniFile(game.root + "\\items\\" + filename);
+			dataIni = new IniFile(game.root + "\\items\\" + filename);
 			
-			id = Convert.ToInt32(dataIni.GetSetting("identification", "id"));
+			filename = dataIni.GetSetting("identification", "filename");
 			name = dataIni.GetSetting("identification", "name");
 			
 			takeable = Convert.ToBoolean(dataIni.GetSetting("flags", "takeable"));
