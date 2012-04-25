@@ -52,6 +52,8 @@
     <Folder Include="items" />
     <Folder Include="maps" />
     <Folder Include="saves" />
+    <Folder Include="saves\maps" />
+    <Folder Include="saves\players" />
   </ItemGroup>
   <ItemGroup>
     <None Include="items\apple.ini" />
