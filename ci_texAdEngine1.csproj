@@ -52,10 +52,11 @@
     <Folder Include="items" />
     <Folder Include="maps" />
     <Folder Include="maps\test" />
+    <Folder Include="saves" />
   </ItemGroup>
   <ItemGroup>
     <None Include="items\apple.ini" />
-    <None Include="items\nochting.ini" />
+    <None Include="items\items_readme.txt" />
     <None Include="items\sword1.ini" />
     <None Include="maps\test\robinsRoom.ini" />
   </ItemGroup>
