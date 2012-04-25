@@ -45,20 +45,19 @@
     <Compile Include="game.cs" />
     <Compile Include="iniFile.cs" />
     <Compile Include="item.cs" />
-    <Compile Include="map.cs" />
+    <Compile Include="player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="items" />
     <Folder Include="maps" />
-    <Folder Include="maps\test" />
     <Folder Include="saves" />
   </ItemGroup>
   <ItemGroup>
     <None Include="items\apple.ini" />
     <None Include="items\items_readme.txt" />
     <None Include="items\sword1.ini" />
-    <None Include="maps\test\robinsRoom.ini" />
+    <None Include="maps\robinsRoom.ini" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>
