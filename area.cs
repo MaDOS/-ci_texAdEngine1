@@ -8,28 +8,38 @@ namespace ci_texAdEngine1
 	{
 		Dictionary<int, item> items;
 		IniFile dataIni;
-		int id;
+		string filename;
+		string name;
 		
 		public area(string name)
 		{
 			if(File.Exists(game.root + "\\saves\\maps\\" + name + ".ini"))
 			{
-				dataIni = new IniFile(game.root + "\\saves\\maps\\" + name + ".ini")
+				dataIni = new IniFile(game.root + "\\saves\\maps\\" + name + ".ini");
 			}
 			else
 			{
 				try
 				{
-					dataIni = new IniFile(game.root + "\\maps\\" + name + ".ini")
+					dataIni = new IniFile(game.root + "\\maps\\" + name + ".ini");
 				}
 				catch(Exception ex)
 				{
 					throw ex; 
 				}
 			}
-			items = new Dictionary<int, item>();
-//			Load items from a save-ini
 			
+			filename = dataIni.GetSetting("identification", "filename");
+			name = dataIni.GetSetting("identification", "name");
+			
+			items = new Dictionary<int, item>();
+			
+			string tempItemString = dataIni.GetSetting("content", "items");
+			
+			foreach(string itemFilename in tempItemString.Split(','))
+			{
+				items.Add(items.Count, new item(itemFilename));
+			}
 			
 		}
 		
@@ -37,7 +47,7 @@ namespace ci_texAdEngine1
 		{
 			string itemsString = "";
 			
-			foreach(item i in items)
+			foreach(item i in items.Values)
 			{
 				itemsString += i.filename + ",";
 			}
@@ -50,4 +60,3 @@ namespace ci_texAdEngine1
 		}
 	}
 }
-"
