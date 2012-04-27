@@ -6,7 +6,7 @@ namespace ci_texAdEngine1
 {
 	public class player
 	{
-		public Dictionary<int, item> inventory;
+		public Dictionary<int, int> inventory; //id, count
 		public string name;
 		private IniFile dataIni;
 		private string filename;
@@ -17,7 +17,7 @@ namespace ci_texAdEngine1
 		{
 			saveFile = game.root + "\\saves\\players\\" + playername + ".ini";
 			
-			inventory = new Dictionary<int, item>();
+			inventory = new Dictionary<int, int>();
 			
 			if(File.Exists(saveFile))
 			{
@@ -27,12 +27,14 @@ namespace ci_texAdEngine1
 				ci_crypter.decodeFile(saveFile, 139);
 
 				
-				//inventory
-				string tempItemString = dataIni.GetSetting("inventory", "items");
-				
-				foreach(string itemFilename in tempItemString.Split(','))
+				//inventory parsing
+				string serializedItems = dataIni.GetSetting("content", "drops");
+				string[] serializedPairs = serializedItems.Split(',');
+				string[] splittedPair = "";
+				foreach(string pair in serializedPairs)
 				{
-					inventory.Add(inventory.Count, new item(itemFilename));
+					splittedPair = pair.Split(':');
+					inventory.Add(Convert.ToInt32(splittedPair[0]), Convert.ToInt32(splittedPair[1]));
 				}
 			}
 			else
@@ -40,34 +42,33 @@ namespace ci_texAdEngine1
 				//player is new on the server
 				filename = playername + ".ini";
 				name = playername;
-				
+				//TODO: needs to be completed
 			}
-			
 			position = pos;
-			
-			
 		}
 		
-		private void takeItem(string name)
+		private void takeItem(int id)
 		{
-			
+			inventory[id]++;
 		}
 		
 		private void dropItem(int id)
 		{
-			int itemCount = 0;
-			
-			foreach(item in position.items[id])
-			{
-				itemCount++;
-			}
-			
-			position.items[id][itemCount - 1] = new item(id);
+			inventory[id]--;
 		}
 		
 		public void save()
 		{
-			dataIni.SaveSettings();
+			string serializedItems = "";
+			
+			foreach(int id in inventory.Keys)
+			{
+				serializedItems += id.ToString() + ":" + drops[id].ToString() + ",";
+			}
+			
+			serializedItems = serializedItems.Substring(0, serializedItems.Length - 1); //trim last comma away
+			
+			dataIni.AddSetting("inventory", "items", serializedItems);
 		}
 	}
 }
