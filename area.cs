@@ -6,22 +6,25 @@ namespace ci_texAdEngine1
 {
 	public class area
 	{
-		public Dictionary<int, item[]> items;
+		public Dictionary<int, int> drops; //id, count
 		private IniFile dataIni;
+		public int id;
 		private string filename;
 		private string name;
 		
-		public area(string name)
+		public area(string filename)
 		{
-			if(File.Exists(game.root + "\\saves\\maps\\" + name + ".ini"))
+			string savedMap = game.root + "\\saves\\maps\\" + filename;
+			
+			if(File.Exists(savedMap))
 			{
-				dataIni = new IniFile(game.root + "\\saves\\maps\\" + name + ".ini");
+				dataIni = new IniFile(savedMap);
 			}
 			else
 			{
 				try
 				{
-					dataIni = new IniFile(game.root + "\\maps\\" + name + ".ini");
+					dataIni = new IniFile(game.root + "\\maps\\" + filename);
 				}
 				catch(Exception ex)
 				{
@@ -32,57 +35,35 @@ namespace ci_texAdEngine1
 			filename = dataIni.GetSetting("identification", "filename");
 			name = dataIni.GetSetting("identification", "name");
 			
-			items = new Dictionary<int, item[]>();
+			drops = new Dictionary<int, int>();
 			
-			string searializedItems = dataIni.GetSetting("content", "items");
-			int itemCount;
-			string itemType;
-			string[] tempItemStringSplit;
-			item tempItem;
-			item[] tempItemArray;
-			
-			foreach(string tempItemString in searializedItems.Split(','))
+			string serializedItems = dataIni.GetSetting("content", "drops");
+			string[] serializedPairs = serializedItems.Split(',');
+			string[] splittedPair = "";
+			foreach(string pair in serializedPairs)
 			{
-				tempItemStringSplit = tempItemString.Split('#');
-				itemType = tempItemStringSplit[0];
-				itemCount = Convert.ToInt32(tempItemStringSplit[1]);
-				tempItem = new item(itemType);
-				
-				tempItemArray = new item[itemCount];
-				
-				for(int i = 1; i <= itemCount; i++)
-				{
-					tempItemArray[i] = tempItem;
-				}
-				
-				items.Add(tempItem.id, tempItemArray);
+				splittedPair = pair.Split(':');
+				drops.Add(Convert.ToInt32(splittedPair[0]), Convert.ToInt32(splittedPair[1]));
 			}
 		}
 		
 		public void spawnPlayer(string name)
 		{
-			game.activePlayers.Add(name, new player(name, this));
+//			game.activePlayers.Add(name, new player(name, this));
 		}
 		
 		public void save()
 		{
-			string itemsString = "";
+			string serializedItems = "";
 			
-			foreach(int itemId in items.Keys)
+			foreach(int id in drops.Keys)
 			{
-				int itemCount = 0;
-				foreach(item i in items[itemId])
-				{
-					itemCount++;
-				}
-				itemsString += items[itemId][0].filename + "#" + itemCount + ",";
+				serializedItems += id.ToString() + ":" + drops[id].ToString() + ",";
 			}
 			
-			itemsString = itemsString.Substring(0, itemsString.Length - 1); //trim last comma away
+			serializedItems = serializedItems.Substring(0, serializedItems.Length - 1); //trim last comma away
 			
-			dataIni.AddSetting("content", "items", itemsString);
-			
-			dataIni.SaveSettings(game.root + "\\saves\\maps\\" + name + ".ini");
+			dataIni.AddSetting("content", "drops", serializedItems);
 		}
 	}
 }
