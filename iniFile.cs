@@ -4,7 +4,7 @@
      
     public class IniFile
     {
-        private Hashtable keyPairs = new Hashtable();
+        public Hashtable keyPairs = new Hashtable();
         private String iniFilePath;
      
         private struct SectionPair
