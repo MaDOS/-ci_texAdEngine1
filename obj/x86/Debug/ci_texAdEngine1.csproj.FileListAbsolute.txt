@@ -3,3 +3,5 @@ E:\keep__\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\bin\Debug\ci
 E:\keep__\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\bin\Debug\ci_texAdEngine1.pdb
 E:\keep__\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\obj\x86\Debug\ci_texAdEngine1.dll
 E:\keep__\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\obj\x86\Debug\ci_texAdEngine1.pdb
+E:\keep__\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\bin\Debug\ci_crypter.dll
+E:\keep__\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\bin\Debug\ci_crypter.pdb
