@@ -10,8 +10,8 @@ namespace ci_texAdEngine1
 		public string name;
 		private IniFile dataIni;
 		private string filename;
-		private string saveFile;
 		private area position;
+		private string saveFile;
 		
 		public player(string playername, area pos)
 		{
@@ -42,9 +42,10 @@ namespace ci_texAdEngine1
 				//player is new on the server
 				filename = playername + ".ini";
 				name = playername;
-				//TODO: needs to be completed
 			}
 			position = pos;
+			
+			this.save();
 		}
 		
 		private void takeItem(int id)
@@ -69,6 +70,11 @@ namespace ci_texAdEngine1
 			serializedItems = serializedItems.Substring(0, serializedItems.Length - 1); //trim last comma away
 			
 			dataIni.AddSetting("inventory", "items", serializedItems);
+			dataIni.AddSetting("attributes", "area", position.id);
+			
+			ci_crypter.encodeFile(saveFile, 139);
+			dataIni.SaveSettings();
+			ci_crypter.decodeFile(saveFile, 139);
 		}
 	}
 }
