@@ -54,6 +54,7 @@
   <ItemGroup>
     <Folder Include="items" />
     <Folder Include="maps" />
+    <Folder Include="maps\test" />
     <Folder Include="saves" />
     <Folder Include="saves\maps" />
     <Folder Include="saves\players" />
@@ -63,7 +64,7 @@
     <None Include="items\ids.ini" />
     <None Include="items\items_readme.txt" />
     <None Include="items\sword1.ini" />
-    <None Include="maps\robinsRoom.ini" />
+    <None Include="maps\test\robinsRoom.ini" />
     <None Include="saves\players\default.ini" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
