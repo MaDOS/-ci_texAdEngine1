@@ -50,6 +50,7 @@
     <Compile Include="item.cs" />
     <Compile Include="player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="snippets.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="items" />
@@ -64,6 +65,7 @@
     <None Include="items\ids.ini" />
     <None Include="items\items_readme.txt" />
     <None Include="items\sword1.ini" />
+    <None Include="maps\test\ids.ini" />
     <None Include="maps\test\robinsRoom.ini" />
     <None Include="saves\players\default.ini" />
   </ItemGroup>
