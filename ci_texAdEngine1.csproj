@@ -50,6 +50,14 @@
     <Compile Include="item.cs" />
     <Compile Include="player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="maps\test\bath.ini" />
+    <None Include="maps\test\bedroom1.ini" />
+    <None Include="maps\test\bedroom2.ini" />
+    <None Include="maps\test\hallway1.ini" />
+    <None Include="maps\test\hallway2.ini" />
+    <None Include="maps\test\hallway3.ini" />
+    <None Include="maps\test\upperHallway1.ini" />
+    <None Include="maps\test\workingRoom.ini" />
     <None Include="snippets.cs" />
   </ItemGroup>
   <ItemGroup>
