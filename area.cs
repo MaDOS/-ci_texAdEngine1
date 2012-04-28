@@ -8,6 +8,7 @@ namespace ci_texAdEngine1
 	{
 		public Dictionary<int, int> drops; //id, count
 		public Dictionary<string, player> activePlayers;
+		public Dictionary<string, int> directions; //direction, id of the area the direction is pointing at
 		private IniFile dataIni;
 		public int id;
 		private string filename;
@@ -32,6 +33,7 @@ namespace ci_texAdEngine1
 			name = dataIni.GetSetting("identification", "name");
 			map = dataIni.GetSetting("identification", "map");
 			
+			
 			drops = new Dictionary<int, int>();
 			
 			string serializedItems = dataIni.GetSetting("content", "drops");
@@ -42,6 +44,19 @@ namespace ci_texAdEngine1
 			{
 				splittedPair = pair.Split(':');
 				drops.Add(Convert.ToInt32(splittedPair[0]), Convert.ToInt32(splittedPair[1]));
+			}
+			
+			
+			directions = new Dictionary<string, int>();
+			
+			string serializedDirections = dataIni.GetSetting("properties", "directions");
+			string[] serializedDirection = serializedDirections.Split(',');
+			string[] splittedDirection = new string[1];
+			
+			foreach(string pair in serializedDirection)
+			{
+				splittedDirection = pair.Split(':');
+				directions.Add(splittedDirection[0], Convert.ToInt32(splittedDirection[1]));
 			}
 			
 			activePlayers = new Dictionary<string, player>();
