@@ -1,6 +1,6 @@
 ﻿
 
-//srialization of dict<int, item[]>
+//serialization of dict<int, item[]>
 
 			string itemsString = "";
 			
