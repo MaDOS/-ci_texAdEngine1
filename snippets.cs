@@ -47,3 +47,5 @@
 				
 				items.Add(tempItem.id, tempItemArray);
 			}
+//Empty direction string
+n:-1,o:-1,s:-1,w:-1,u:-1,d:-1,no:-1,so:-1,sw:-1,nw:-1
