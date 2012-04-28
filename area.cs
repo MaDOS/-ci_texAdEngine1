@@ -14,9 +14,9 @@ namespace ci_texAdEngine1
 		private string name;
 		private string map;
 		
-		public area(string filename)
+		public area(string filename_param)
 		{
-			string savedMap = game.root + "\\saves\\maps\\" + map + "\\" + filename;
+			string savedMap = game.root + "\\saves\\maps\\" + map + "\\" + filename_param;
 			
 			if(File.Exists(savedMap))
 			{
@@ -24,7 +24,7 @@ namespace ci_texAdEngine1
 			}
 			else
 			{
-				dataIni = new IniFile(game.root + "\\maps\\" + map + "\\" + filename);
+				dataIni = new IniFile(game.root + "\\maps\\" + map + "\\" + filename_param);
 			}
 			
 			id = Convert.ToInt32(dataIni.GetSetting("identification", "id"));
