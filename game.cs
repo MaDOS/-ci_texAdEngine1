@@ -14,10 +14,12 @@ namespace ci_texAdEngine1
 		public string map;
 		public Dictionary<int, item> items; //id, instance
 		public Dictionary<int, area> areas; //filename, instance
-		public Dictionary<string, player> activePlayers;
 		
 		public game(string map_param)
 		{
+			items = new Dictionary<int, item>();
+			areas = new Dictionary<int, area>();
+			
 			StreamReader rdr = new StreamReader(root + "\\items\\ids.ini");
 			string line = rdr.ReadLine();
 			while(line != "")
@@ -37,8 +39,8 @@ namespace ci_texAdEngine1
 			}
 			rdr.Close();
 			
-			rdr = new StreamReader(root + "\\maps\\" + map + "\\")
-			string line = rdr.ReadLine();
+			rdr = new StreamReader(root + "\\maps\\" + map + "\\");
+			line = rdr.ReadLine();
 			while(line != "")
 			{
 				line = rdr.ReadLine();
@@ -51,12 +53,10 @@ namespace ci_texAdEngine1
 				else
 				{
 					string[] splitLine = line.Split('=');
-					areas.Add(Convert.ToInt32(splitLine[0], new area(splitLine[1]));
+					areas.Add(Convert.ToInt32(splitLine[0]), new area(splitLine[1]));
 				}
 			}
 			rdr.Close();
-			
-			activePlayers = new Dictionary<string, player>();
 		}
 		
 		public string onConnect(string playername, string password) //first connection handling and password protecting are a bit messed up and very unsafe. I will change this later
@@ -76,7 +76,9 @@ namespace ci_texAdEngine1
 					return "incorrect password!";
 				}
 				
-				activePlayers.Add(playername, new player(playername, areas[Convert.ToInt32(playerDataIni.GetSetting("attributes", "area"))]));
+				int spawnAreaId = Convert.ToInt32(playerDataIni.GetSetting("attributes", "area"));
+				
+				areas[spawnAreaId].activePlayers.Add(playername, new player(playername, areas[spawnAreaId]));
 			}
 			else
 			{
@@ -84,7 +86,7 @@ namespace ci_texAdEngine1
 				playerDataIni.AddSetting("identification", "password", password);
 				playerDataIni.SaveSettings();
 				ci_crypter.decodeFile(saveFile, 139);
-				activePlayers.Add(playername, new player(playername, areas[0]));
+				areas[0].activePlayers.Add(playername, new player(playername, areas[0]));
 			}
 			
 			return "connected successfully!";

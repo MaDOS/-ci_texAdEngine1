@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using ci_;
 using System.Collections.Generic;
 
@@ -30,7 +31,7 @@ namespace ci_texAdEngine1
 				//inventory parsing
 				string serializedItems = dataIni.GetSetting("content", "drops");
 				string[] serializedPairs = serializedItems.Split(',');
-				string[] splittedPair = "";
+				string[] splittedPair = new string[1];
 				foreach(string pair in serializedPairs)
 				{
 					splittedPair = pair.Split(':');
@@ -48,14 +49,19 @@ namespace ci_texAdEngine1
 			this.save();
 		}
 		
-		private void takeItem(int id)
+		public void takeItem(int id)
 		{
 			inventory[id]++;
 		}
 		
-		private void dropItem(int id)
+		public void dropItem(int id)
 		{
 			inventory[id]--;
+		}
+		
+		public void go(string direction)
+		{
+			
 		}
 		
 		public void save()
@@ -64,13 +70,13 @@ namespace ci_texAdEngine1
 			
 			foreach(int id in inventory.Keys)
 			{
-				serializedItems += id.ToString() + ":" + drops[id].ToString() + ",";
+				serializedItems += id.ToString() + ":" + inventory[id].ToString() + ",";
 			}
 			
 			serializedItems = serializedItems.Substring(0, serializedItems.Length - 1); //trim last comma away
 			
 			dataIni.AddSetting("inventory", "items", serializedItems);
-			dataIni.AddSetting("attributes", "area", position.id);
+			dataIni.AddSetting("attributes", "area", position.id.ToString());
 			
 			ci_crypter.encodeFile(saveFile, 139);
 			dataIni.SaveSettings();

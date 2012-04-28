@@ -7,6 +7,7 @@ namespace ci_texAdEngine1
 	public class area
 	{
 		public Dictionary<int, int> drops; //id, count
+		public Dictionary<string, player> activePlayers;
 		private IniFile dataIni;
 		public int id;
 		private string filename;
@@ -35,13 +36,15 @@ namespace ci_texAdEngine1
 			
 			string serializedItems = dataIni.GetSetting("content", "drops");
 			string[] serializedPairs = serializedItems.Split(',');
-			string[] splittedPair = "";
+			string[] splittedPair = new string[1];
 			
 			foreach(string pair in serializedPairs)
 			{
 				splittedPair = pair.Split(':');
 				drops.Add(Convert.ToInt32(splittedPair[0]), Convert.ToInt32(splittedPair[1]));
 			}
+			
+			activePlayers = new Dictionary<string, player>();
 		}
 		
 		public void save()
