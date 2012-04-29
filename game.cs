@@ -11,9 +11,9 @@ namespace ci_texAdEngine1
 	{
 		public static string root = Path.GetDirectoryName(Assembly.GetAssembly(typeof(game)).CodeBase);
 		public static int itemsCount = new IniFile(root + "\\items\\ids.ini").keyPairs.Count;
-		public string map;
-		public Dictionary<int, item> items; //id, instance
-		public Dictionary<int, area> areas; //filename, instance
+		public static string map;
+		public static Dictionary<int, item> items; //id, instance
+		public static Dictionary<int, area> areas; //filename, instance
 		
 		public game(string map_param)
 		{

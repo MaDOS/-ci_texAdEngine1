@@ -61,7 +61,8 @@ namespace ci_texAdEngine1
 		
 		public void go(string direction)
 		{
-			
+			game.areas[this.position.directions[direction]].activePlayers.Add(this.name, this);
+			position.activePlayers.Remove(this.name);
 		}
 		
 		public void save()
