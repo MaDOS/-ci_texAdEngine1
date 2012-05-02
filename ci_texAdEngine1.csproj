@@ -64,6 +64,7 @@
     <Folder Include="items" />
     <Folder Include="maps" />
     <Folder Include="maps\test" />
+    <Folder Include="npcs" />
     <Folder Include="saves" />
     <Folder Include="saves\maps" />
     <Folder Include="saves\players" />
