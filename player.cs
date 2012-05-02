@@ -13,6 +13,7 @@ namespace ci_texAdEngine1
 		private string filename;
 		private area position;
 		private string saveFile;
+		private int health = 100;
 		
 		public player(string playername, area pos)
 		{
@@ -27,6 +28,9 @@ namespace ci_texAdEngine1
 				dataIni = new IniFile(saveFile);
 				ci_crypter.decodeFile(saveFile, 139);
 
+				
+				//attributes
+				health = Convert.ToInt32(dataIni.GetSetting("attributes", "health"));
 				
 				//inventory parsing
 				string serializedItems = dataIni.GetSetting("content", "drops");
