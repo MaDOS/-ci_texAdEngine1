@@ -51,18 +51,29 @@ namespace ci_texAdEngine1
 		
 		public void takeItem(int id)
 		{
-			inventory[id]++;
+			if(position.drops[id] > 0)
+			{
+				position.drops[id]--;
+				inventory[id]++;
+			}
 		}
 		
 		public void dropItem(int id)
 		{
-			inventory[id]--;
+			if(inventory[id] > 0)
+			{
+				position.drops[id]++;
+				inventory[id]--;
+			}
 		}
 		
 		public void go(string direction)
 		{
-			game.areas[this.position.directions[direction]].activePlayers.Add(this.name, this);
-			position.activePlayers.Remove(this.name);
+			if(game.areas[this.position.directions[direction]] != -1)
+			{
+				game.areas[this.position.directions[direction]].activePlayers.Add(this.name, this);
+				position.activePlayers.Remove(this.name);
+			}
 		}
 		
 		public void save()
