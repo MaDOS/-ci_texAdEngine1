@@ -12,8 +12,9 @@ namespace ci_texAdEngine1
 		private IniFile dataIni;
 		public int id;
 		private string filename;
-		private string name;
-		private string map;
+		public string name;
+		public string map;
+		public string description;
 		
 		public area(string filename_param)
 		{
@@ -32,6 +33,7 @@ namespace ci_texAdEngine1
 			filename = dataIni.GetSetting("identification", "filename");
 			name = dataIni.GetSetting("identification", "name");
 			map = dataIni.GetSetting("identification", "map");
+			description = dataIni.GetSetting("content", "desc");
 			
 			
 			drops = new Dictionary<int, int>();
