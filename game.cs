@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using ci_;
@@ -9,41 +10,67 @@ namespace ci_texAdEngine1
 {
 	public class game
 	{
-		public static string root = Path.GetDirectoryName(Assembly.GetAssembly(typeof(game)).CodeBase);
-		public static int itemsCount = new IniFile(root + "\\items\\ids.ini").keyPairs.Count;
+		public static string root = Path.GetDirectoryName(Assembly.GetAssembly(typeof(game)).CodeBase).Remove(0, 6); //remove(0,6) trims the "file:\" away
+		public static int itemsCount;
 		public static string map;
 		public static Dictionary<int, item> items; //id, instance
 		public static Dictionary<int, area> areas; //filename, instance
+		private static IniFile itemIds;
+		     
+        private struct SectionPair
+        {
+            public String Section;
+            public String Key;
+        }
 		
 		public game(string map_param)
 		{
 			items = new Dictionary<int, item>();
 			areas = new Dictionary<int, area>();
 			
-			StreamReader rdr = new StreamReader(root + "\\items\\ids.ini");
-			string line = rdr.ReadLine();
-			while(line != "")
-			{
-				line = rdr.ReadLine();
-				if(line.ToCharArray()[0] == '#' 
-				   || line.ToCharArray()[0] == '\'' 
-				   || line.ToCharArray()[0] == '[')
-				{
-					//comment or section-identifier
-				}
-				else
-				{
-					string[] splitLine = line.Split('=');
-					items.Add(Convert.ToInt32(splitLine[0]), new item(splitLine[1]));
-				}
-			}
-			rdr.Close();
+			itemIds = new IniFile(root + "\\items\\ids.ini");
+			itemsCount = itemIds.keyPairs.Count;
 			
-			rdr = new StreamReader(root + "\\maps\\" + map + "\\");
+			foreach(DictionaryEntry entry in itemIds.keyPairs)
+			{
+				Console.Write(entry.Key.GetType().ToString() + " => ");
+				Console.WriteLine(entry.Key.GetType().GetFields()[0].);
+				Console.Write(entry.Value.GetType().ToString() + " => ");
+				Console.WriteLine(entry.Value);
+//				SectionPair pair = entry.Value.;
+				
+//				sectPair.Section = "ids";
+//				sectPair.Key = ((SectionPair)entry.Value).Key;
+//				items.Add(Convert.ToInt32(sectPair.Key), new item(((String)itemIds.keyPairs[sectPair])));
+				
+//				items.Add(Convert.ToInt32(pair.Key), new item(((String)itemIds.keyPairs[pair])));
+			}
+			
+			StreamReader rdr = new StreamReader(root + "\\items\\ids.ini");
+//			string line = rdr.ReadLine();
+//			while(line.Trim() != "")
+//			{
+//				if(line.ToCharArray()[0] == '#'
+//				   || line.ToCharArray()[0] == '\'' 
+//				   || line.ToCharArray()[0] == '[')
+//				{
+//					//comment or section-identifier
+//				}
+//				else
+//				{
+//					string[] splitLine = line.Split('=');
+//					items.Add(Convert.ToInt32(splitLine[0]), new item(splitLine[1]));
+//				}
+//				line = rdr.ReadLine();
+//			}
+//			rdr.Close();
+			
+			rdr = new StreamReader(root + "\\maps\\" + map + "\\ids.ini");
+			string line = rdr.ReadLine();
+			
 			line = rdr.ReadLine();
 			while(line != "")
 			{
-				line = rdr.ReadLine();
 				if(line.ToCharArray()[0] == '#' 
 				   || line.ToCharArray()[0] == '\'' 
 				   || line.ToCharArray()[0] == '[')
@@ -55,6 +82,7 @@ namespace ci_texAdEngine1
 					string[] splitLine = line.Split('=');
 					areas.Add(Convert.ToInt32(splitLine[0]), new area(splitLine[1]));
 				}
+				line = rdr.ReadLine();
 			}
 			rdr.Close();
 		}
