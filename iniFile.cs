@@ -7,7 +7,7 @@
         public Hashtable keyPairs = new Hashtable();
         private String iniFilePath;
      
-        private struct SectionPair
+        public struct SectionPair
         {
             public String Section;
             public String Key;
