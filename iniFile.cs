@@ -38,7 +38,7 @@
                     {
                         strLine = strLine.Trim().ToUpper();
      
-                        if (strLine != "" || !strLine.StartsWith("'") || !strLine.StartsWith("#"))
+                        if (strLine != "")
                         {
                             if (strLine.StartsWith("[") && strLine.EndsWith("]"))
                             {
