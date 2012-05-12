@@ -16,8 +16,9 @@ namespace ci_texAdEngine1
 		public string map;
 		public string description;
 		
-		public area(string filename_param)
+		public area(string map_param, string filename_param)
 		{
+			map = map_param;
 			string savedMap = game.root + "\\saves\\maps\\" + map + "\\" + filename_param;
 			
 			if(File.Exists(savedMap))
@@ -32,20 +33,23 @@ namespace ci_texAdEngine1
 			id = Convert.ToInt32(dataIni.GetSetting("identification", "id"));
 			filename = dataIni.GetSetting("identification", "filename");
 			name = dataIni.GetSetting("identification", "name");
-			map = dataIni.GetSetting("identification", "map");
 			description = dataIni.GetSetting("content", "desc");
 			
 			
 			drops = new Dictionary<int, int>();
 			
 			string serializedItems = dataIni.GetSetting("content", "drops");
-			string[] serializedPairs = serializedItems.Split(',');
-			string[] splittedPair = new string[1];
 			
-			foreach(string pair in serializedPairs)
+			if(serializedItems.Trim() != "")
 			{
-				splittedPair = pair.Split(':');
-				drops.Add(Convert.ToInt32(splittedPair[0]), Convert.ToInt32(splittedPair[1]));
+				string[] serializedPairs = serializedItems.Split(',');
+				string[] splittedPair = new string[1];
+				
+				foreach(string pair in serializedPairs)
+				{
+					splittedPair = pair.Split(':');
+					drops.Add(Convert.ToInt32(splittedPair[0]), Convert.ToInt32(splittedPair[1]));
+				}
 			}
 			
 			
