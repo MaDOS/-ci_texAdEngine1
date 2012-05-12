@@ -73,7 +73,6 @@
     <None Include="items\sword1.ini" />
     <None Include="maps\test\ids.ini" />
     <None Include="maps\test\robinsRoom.ini" />
-    <None Include="saves\players\default.ini" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>
