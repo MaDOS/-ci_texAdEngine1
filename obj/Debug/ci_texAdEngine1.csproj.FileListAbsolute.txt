@@ -10,3 +10,8 @@ E:\keep__\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\bin\Debug\ci
 E:\keep__\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\obj\Debug\ResolveAssemblyReference.cache
 E:\keep__\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\obj\Debug\ci_texAdEngine1.dll
 E:\keep__\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\obj\Debug\ci_texAdEngine1.pdb
+E:\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\bin\Debug\ci_texAdEngine1.dll
+E:\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\bin\Debug\ci_texAdEngine1.pdb
+E:\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\obj\Debug\ResolveAssemblyReference.cache
+E:\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\obj\Debug\ci_texAdEngine1.dll
+E:\_EIGENE PROGRAMME\_classes\ci_texAdEngine\ci_texAdEngine1\obj\Debug\ci_texAdEngine1.pdb
