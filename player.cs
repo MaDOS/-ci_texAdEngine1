@@ -19,7 +19,7 @@ namespace ci_texAdEngine1
 		public int areaId;
 		private Dictionary<int, area> areasAvailable;
 		private string saveFile;
-		private int health = 100;
+		public int health = 100;
 		
 		public player(string playername, string password_param, Dictionary<int, area> areasAvailable_param)
 		{
@@ -111,9 +111,9 @@ namespace ci_texAdEngine1
 		
 		public void go(string direction)
 		{
-			if(this.position.directions[direction] != -1)
+			if(this.position.directions[direction.ToUpper()] != -1)
 			{
-				area newPos = areasAvailable[position.directions[direction]];
+				area newPos = areasAvailable[position.directions[direction.ToUpper()]];
 				
 				position.activePlayers.Remove(name);
 				newPos.activePlayers.Add(name, this);
